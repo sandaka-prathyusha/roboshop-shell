@@ -4,7 +4,7 @@
   [Service]
   User=roboshop
   Environment=MONGO=true
-  Environment=MONGO_URL="mongodb://mongodb.nandu18.online:27017/catalogue"
+  Environment=MONGO_URL="mongodb://mongodb-dev.nandu18.online:27017/catalogue"
   ExecStart=/bin/node /app/server.js
   SyslogIdentifier=catalogue
 

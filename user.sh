@@ -13,5 +13,5 @@ systemctl enable user
 systemctl start user
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 yum install mongodb-org-shell -y
-mongo --host mongodb.nandu18.online</app/schema/catalogue.js
+mongo --host mongodb-dev.nandu18.online</app/schema/catalogue.js
 
