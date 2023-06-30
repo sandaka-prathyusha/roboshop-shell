@@ -1,8 +1,9 @@
+source common.sh
 echo -e "\e[36m>>>>>>>>>Install python 3.6<<<<<<<<<\e[0m"
 yum install python36 gcc python3-devel -y
 
 echo -e "\e[36m>>>>>>>>>adding application user <<<<<<<<<\e[0m"
-useradd roboshop
+useradd ${app_user}
 
 echo -e "\e[36m>>>>>>>>>create application directory<<<<<<<<<\e[0m"
 rm -rf /app

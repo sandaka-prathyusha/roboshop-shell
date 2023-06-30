@@ -1,8 +1,4 @@
-
-
 source common.sh
-
-
 
 echo -e "\e[34m>>>>>>>>>Dowloading NodeJS Repos <<<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
