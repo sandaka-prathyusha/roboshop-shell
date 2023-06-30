@@ -2,7 +2,6 @@ script_path=$(dirname $0)
 
 source ${script_path}/common.sh
 
-echo  $app_user
 
 exit
 
@@ -33,7 +32,7 @@ npm install
 
 
 echo -e "\e[34m>>>>>>>>>Copy user SystemD file<<<<<<<<<\e[0m"
-cp /home/centos/roboshop-shell/user.service  /etc/systemd/system/user.service
+cp $script_path/user.service  /etc/systemd/system/user.service
 systemctl daemon-reload
 
 
