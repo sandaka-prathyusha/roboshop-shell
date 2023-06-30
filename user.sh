@@ -2,10 +2,6 @@ script_path=$(dirname $0)
 
 source ${script_path}/common.sh
 
-
-exit
-
-
 echo -e "\e[34m>>>>>>>>>Dowloading NodeJS Repos <<<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
