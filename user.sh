@@ -12,7 +12,7 @@ rm -rf  /app
 mkdir /app
 
 echo -e "\e[34m>>>>>>>>>Download Application Content<<<<<<<<<\e[0m"
-curl -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
+curl -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user.zip
 cd /app
 
 echo -e "\e[34m>>>>>>>>Unzip App Content<<<<<<<<<<<\e[0m"
@@ -39,5 +39,5 @@ echo -e "\e[34m>>>>>>>>>Install Mongo Client<<<<<<<<<\e[0m"
 yum install mongodb-org-shell -y
 
 echo -e "\e[34m>>>>>>Load Schema<<<<<<<<<\e[0m"
-mongo --host mongodb-dev.nandu18.online </app/schema/user.js
+mongo --host mongodb-dev.nandu18.online  </app/schema/user.js
 
