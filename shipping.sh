@@ -1,5 +1,5 @@
 script=$(realpath "$0")
-script_path=$(dirname "$ script")
+script_path=$(dirname "$script")
 source ${script_path}/common.sh
 mysql_root_password=$1
 echo -e "\e[36m>>>>>>>>>Java Installation <<<<<<<<<\e[0m"
@@ -27,7 +27,7 @@ echo -e "\e[36m>>>>>>>>>move the file<<<<<<<<<\e[0m"
 mv target/shipping-1.0.jar  shipping.jar
 
 echo -e "\e[36m>>>>>>>>>Coping systemd service file<<<<<<<<<\e[0m"
-cp $script_path/shipping.service  /etc/systemd/system/shipping.service
+cp ${script_path}/shipping.service  /etc/systemd/system/shipping.service
 
 echo -e "\e[36m>>>>>>>>>START SHIPPING<<<<<<<<<\e[0m"
 systemctl daemon-reload
