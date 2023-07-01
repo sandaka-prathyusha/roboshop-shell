@@ -1,5 +1,5 @@
 script=$(realpath "$0")
-script_path=$(dirname "script ")
+script_path=$(dirname "script")
 source ${script_path}/common.sh
 
 echo -e "\e[34m>>>>>>>>>Install Redis Repos<<<<<<<<<\e[0m"
