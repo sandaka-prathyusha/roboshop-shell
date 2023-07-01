@@ -1,5 +1,5 @@
 script=$(realpath "$0")
-script_path=$(dirname "script ")
+script_path=$(dirname "$script ")
 source ${script_path}/common.sh
 
 echo -e "\e[34m>>>>>>>>>Dowloading NodeJS Repos <<<<<<<<<\e[0m"
@@ -26,7 +26,7 @@ echo -e "\e[34m>>>>>>>>>Install NodeJS Dependencies<<<<<<<<<\e[0m"
 npm install
 
 echo -e "\e[34m>>>>>>>>>Copy user SystemD file<<<<<<<<<\e[0m"
-cp $script_path/user.service  /etc/systemd/system/user.service
+cp ${script_path}/user.service  /etc/systemd/system/user.service
 systemctl daemon-reload
 
 echo -e "\e[34m>>>>>>>>>Starting user Service<<<<<<<<<\e[0m"
