@@ -2,7 +2,7 @@ script=$(realpath "$0")
 script_path=$(dirname "script ")
 source ${script_path}/common.sh
 
-echo "\e[34m>>>>>>>>> Installing Nginx<<<<<<<<<\e[0m"
+echo "\e[34m>>>>>>>>>Installing Nginx<<<<<<<<<\e[0m"
 yum install nginx -y
 
 echo "\e[34m>>>>>>>>>copy roboshop config <<<<<<<<<\e[0m"
