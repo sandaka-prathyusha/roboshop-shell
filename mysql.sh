@@ -2,13 +2,13 @@ script=$(realpath "$0")
 script_path=$(dirname "script ")
 source ${script_path}/common.sh
 
-echo -e "\e[36m>>>>>>>>>Disabling Default MYSQL <<<<<<<<<\e[0m"
+echo -e "\e[36m>>>>>>>>>Disabling Default mysql<<<<<<<<<\e[0m"
 dnf module disable mysql -y
 
 echo -e "\e[36m>>>>>>>>>COPYING MYSQL Repos<<<<<<<<<\e[0m"
 cp mysql.repo  /etc/yum.repos.d/mysql.repo
 
-echo -e "\e[36m>>>>>>>>>Install MYSQL <<<<<<<<<\e[0m"
+echo -e "\e[36m>>>>>>>>>Install mysql<<<<<<<<<\e[0m"
 yum install mysql-community-server -y
 
 echo -e "\e[36m>>>>>>>>>Starting mysql<<<<<<<<<\e[0m"
