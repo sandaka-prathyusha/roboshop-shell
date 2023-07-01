@@ -1,4 +1,7 @@
-source common.sh
+script=$(realpath "$0")
+script_path=$(dirname "script ")
+source ${script_path}/common.sh
+
 echo -e "\e[36m>>>>>>>>>Java Installation <<<<<<<<<\e[0m"
 yum install maven -y
 
@@ -20,22 +23,17 @@ cd /app
 echo -e "\e[36m>>>>>>>>> Downloading Dependencies <<<<<<<<<\e[0m"
 mvn clean package
 
-
 echo -e "\e[36m>>>>>>>>>move the file<<<<<<<<<\e[0m"
 mv target/shipping-1.0.jar  shipping.jar
 
-
 echo -e "\e[36m>>>>>>>>>Coping systemd service file<<<<<<<<<\e[0m"
-cp /home/centos/roboshop-shell/shipping.service  /etc/systemd/system/shipping.service
+cp $script_path/shipping.service  /etc/systemd/system/shipping.service
 
 echo -e "\e[36m>>>>>>>>>START SHIPPING<<<<<<<<<\e[0m"
 systemctl daemon-reload
 
-
-
 echo -e "\e[36m>>>>>>>>>INSTALL MYSQL <<<<<<<<<\e[0m"
 yum install mysql -y
-
 
 echo -e "\e[36m>>>>>>>>>LOAD SCHEMA <<<<<<<<<\e[0m"
 mysql -h  mysql-dev.nandu18.online -uroot -pRoboShop@1 < /app/schema/shipping.sql

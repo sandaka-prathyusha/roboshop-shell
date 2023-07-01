@@ -1,3 +1,7 @@
+script=$(realpath "$0")
+script_path=$(dirname "script ")
+source ${script_path}/common.sh
+
 echo -e "\e[36m>>>>>>>>>download rabbitmq repos <<<<<<<<<\e[0m"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 
@@ -6,8 +10,6 @@ curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/sc
 
 echo -e "\e[36m>>>>>>>>>Rabbitmq Installation <<<<<<<<<\e[0m"
 yum install rabbitmq-server -y
-
-
 
 echo -e "\e[36m>>>>>>>>>starting rabbitmq<<<<<<<<<\e[0m"
 systemctl enable rabbitmq-server

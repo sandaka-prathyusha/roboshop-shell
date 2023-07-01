@@ -1,14 +1,9 @@
-
-dirname $0
-exit
-
-script_path=$(dirname $0)
-
+script=$(realpath "$0")
+script_path=$(dirname "script ")
 source ${script_path}/common.sh
 
 echo -e "\e[34m>>>>>>>>>Dowloading NodeJS Repos <<<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
-
 
 echo -e "\e[34m>>>>>>>>> Installing NodeJS <<<<<<<<<\e[0m"
 yum install nodejs -y
@@ -30,18 +25,16 @@ cd /app
 echo -e "\e[34m>>>>>>>>>Install NodeJS Dependencies<<<<<<<<<\e[0m"
 npm install
 
-
 echo -e "\e[34m>>>>>>>>>Copy user SystemD file<<<<<<<<<\e[0m"
 cp $script_path/user.service  /etc/systemd/system/user.service
 systemctl daemon-reload
-
 
 echo -e "\e[34m>>>>>>>>>Starting user Service<<<<<<<<<\e[0m"
 systemctl enable user
 systemctl restart user
 
 echo -e "\e[34m>>>>>>>>>Copy MongoDB repos<<<<<<<<<\e[0m"
-cp /home/centos/roboshop-shell/mongo.repo  /etc/yum.repos.d/mongo.repo
+cp $script_path/mongo.repo  /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[34m>>>>>>>>>Install Mongo Client<<<<<<<<<\e[0m"
 yum install mongodb-org-shell -y
