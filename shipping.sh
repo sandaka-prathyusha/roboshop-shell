@@ -1,7 +1,7 @@
 script=$(realpath "$0")
 script_path=$(dirname "script")
 source ${script_path}/common.sh
-
+mysql_root_password=$1
 echo -e "\e[36m>>>>>>>>>Java Installation <<<<<<<<<\e[0m"
 yum install maven -y
 
@@ -36,7 +36,7 @@ echo -e "\e[36m>>>>>>>>>INSTALL MYSQL <<<<<<<<<\e[0m"
 yum install mysql -y
 
 echo -e "\e[36m>>>>>>>>>LOAD SCHEMA <<<<<<<<<\e[0m"
-mysql -h  mysql-dev.nandu18.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+mysql -h  mysql-dev.nandu18.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
 
 echo -e "\e[36m>>>>>>>>>RESTART SHIPPING <<<<<<<<<\e[0m"
 systemctl restart shipping
