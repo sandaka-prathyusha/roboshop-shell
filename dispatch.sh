@@ -1,5 +1,5 @@
 script=$(realpath "$0")
-script_path=$(dirname "script")
+script_path=$(dirname "$script")
 source ${script_path}/common.sh
 
 "\e[34m>>>>>>>>> Installing golang <<<<<<<<<\e[0m"
@@ -29,7 +29,7 @@ go build
 
 
 "\e[34m>>>>>>>>>copy systemd service<<<<<<<<<\e[0m"
-cp $scrit_path/dispatch.service  /etc/systemd/system/dispatch.service
+cp ${scrit_path}/dispatch.service  /etc/systemd/system/dispatch.service
 
 "\e[34m>>>>>>>>>starting dispatch service<<<<<<<<<\e[0m"
 systemctl daemon-reload

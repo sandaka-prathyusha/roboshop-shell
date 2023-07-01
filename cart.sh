@@ -1,5 +1,5 @@
 script=$(realpath "$0")
-script_path=$(dirname "script")
+script_path=$(dirname "$script")
 source ${script_path}/common.sh
 
 echo -e "\e[34m>>>>>>>>>configuring NodeJS<<<<<<<<<\e[0m"
@@ -28,7 +28,7 @@ echo -e "\e[34m>>>>>>>>>Install NodeJS Dependencies<<<<<<<<<\e[0m"
 npm install
 
 echo -e "\e[34m>>>>>>>>>Copy Cart SystemD file<<<<<<<<<\e[0m"
-cp  $script_path/cart.service  /etc/systemd/system/cart.service
+cp  ${script_path}/cart.service  /etc/systemd/system/cart.service
 
 echo -e "\e[34m>>>>>>>>>Start Cart service<<<<<<<<<\e[0m"
 systemctl daemon-reload
