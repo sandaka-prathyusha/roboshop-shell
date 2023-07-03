@@ -2,37 +2,14 @@ script=$(realpath "$0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
 
-echo -e "\e[34m>>>>>>>>>configuring NodeJS<<<<<<<<<\e[0m"
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+component=catalogue
 
-echo -e "\e[34m>>>>>>>>>Install NodeJS<<<<<<<<<\e[0m"
-yum install nodejs -y
+func_nodejs
 
-echo -e "\e[34m>>>>>>>>>Add Application user<<<<<<<<<\e[0m"
-useradd ${app_user}
 
-echo -e "\e[34m>>>>>>>>>Create Application Directory<<<<<<<<<\e[0m"
-rm -rf /app
-mkdir /app
 
-echo -e "\e[34m>>>>>>>>>Download App Content <<<<<<<<<\e[0m"
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
-cd /app
 
-echo -e "\e[34m>>>>>>>>>Unzip App Content<<<<<<<<<\e[0m"
-unzip /tmp/catalogue.zip
-cd /app
 
-echo -e "\e[34m>>>>>>>>>Install NodeJS Dependencies<<<<<<<<<\e[0m"
-npm install
-
-echo -e "\e[34m>>>>>>>>>Copy Catalogue SystemD file<<<<<<<<<\e[0m"
-cp  ${script_path}/catalogue.service  /etc/systemd/system/catalogue.service
-
-echo -e "\e[34m>>>>>>>>>Start Catalogue service<<<<<<<<<\e[0m"
-systemctl daemon-reload
-systemctl enable catalogue
-systemctl restart catalogue
 
 echo -e "\e[34m>>>>>>>>>Copy MongoDB repos<<<<<<<<<\e[0m"
 cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo
