@@ -14,7 +14,7 @@ rm -rf /app
 mkdir /app
 
 echo -e "\e[36m>>>>>>>>>download application content<<<<<<<<<\e[0m"
-curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip
+curl -L -o /tmp/payment.zip  https://roboshop-artifacts.s3.amazonaws.com/payment.zip
 cd /app
 
 echo -e "\e[36m>>>>>>>>>unzip application content<<<<<<<<<\e[0m"
