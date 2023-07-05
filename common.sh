@@ -1,38 +1,44 @@
-app_user=roboshop
-script=$(realpath "$0")
-script_path=$(dirname "$script")
+ app_user=roboshop
+ script=$(realpath "$0")
+ script_path=$(dirname "$script")
 
-func_nodejs() {
-echo -e "\e[34m>>>>>>>>>configuring NodeJS<<<<<<<<<\e[0m"
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash
-
-echo -e "\e[34m>>>>>>>>>Install NodeJS<<<<<<<<<\e[0m"
-yum install nodejs -y
-
-echo -e "\e[34m>>>>>>>>>Add Application user<<<<<<<<<\e[0m"
-useradd ${app_user}
-
-echo -e "\e[34m>>>>>>>>>Create Application Directory<<<<<<<<<\e[0m"
-rm -rf /app
-mkdir /app
+ print_head(){
+  echo -e "\e[33m>>>>>>>>> $1 <<<<<<<<<\e[0m"
+ }
 
 
-echo -e "\e[34m>>>>>>>>>Download App Content <<<<<<<<<\e[0m"
-curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
-cd /app
+ func_nodejs() {
 
-echo -e "\e[34m>>>>>>>>>Unzip App Content<<<<<<<<<\e[0m"
-unzip /tmp/${component}.zip
-cd /app
+ print_head "configuring NodeJS"
+ curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
-echo -e "\e[34m>>>>>>>>>Install NodeJS Dependencies<<<<<<<<<\e[0m"
-npm install
+ print_head "Install NodeJS"
+ yum install nodejs -y
 
-echo -e "\e[34m>>>>>>>>>Copy Cart SystemD file<<<<<<<<<\e[0m"
-cp  ${script_path}/${component}.service  /etc/systemd/system/${component}.service
+ print_head "Add Application user"
+ useradd ${app_user}
 
-echo -e "\e[34m>>>>>>>>>Start Cart service<<<<<<<<<\e[0m"
-systemctl daemon-reload
-systemctl enable ${component}
-systemctl restart ${component}
-}
+ print_head "Create Application Directory"
+ rm -rf /app
+ mkdir /app
+
+
+ print_head "Download App Content"
+ curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
+ cd /app
+
+ print_head "Unzip App Content"
+ unzip /tmp/${component}.zip
+ cd /app
+
+ print_head "Install NodeJS Dependencies"
+ npm install
+
+ print_head "Copy Cart SystemD file"
+ cp  ${script_path}/${component}.service  /etc/systemd/system/${component}.service
+
+ print_head "Start Cart service"
+ systemctl daemon-reload
+ systemctl enable ${component}
+ systemctl restart ${component}
+ }
