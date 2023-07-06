@@ -8,19 +8,24 @@ if [ -z "$rabbitmq_appuser_password"]; then
    exit
 fi
 
-echo -e "\e[36m>>>>>>>>>download rabbitmq repos <<<<<<<<<\e[0m"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+func_print_head "Download rabbitmq repos "
+curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>$log_file
+func_stat_check $?
 
-echo -e "\e[36m>>>>>>>>>configuring rabbitmq repo<<<<<<<<<\e[0m"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+func_print_head "configuring rabbitmq repo"
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>$log_file
+func_stat_check $?
 
-echo -e "\e[36m>>>>>>>>>Rabbitmq Installation <<<<<<<<<\e[0m"
-yum install rabbitmq-server -y
+func_print_head "Rabbitmq Installation "
+yum install  erlang rabbitmq-server -y &>>$log_file
+func_stat_check $?
 
-echo -e "\e[36m>>>>>>>>>starting rabbitmq<<<<<<<<<\e[0m"
-systemctl enable rabbitmq-server
-systemctl restart rabbitmq-server
+func_print_head "starting rabbitmq"
+systemctl enable rabbitmq-server &>>$log_file
+systemctl restart rabbitmq-server &>>$log_file
+func_stat_check $?
 
-echo -e "\e[36m>>>>>>>>>Adding application user<<<<<<<<<\e[0m"
-rabbitmqctl add_user roboshop ${rabbitmq_appuser_password}
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+func_print_head  "Adding application user"
+rabbitmqctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$log_file
+func_stat_check $?
