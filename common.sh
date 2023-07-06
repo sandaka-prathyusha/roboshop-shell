@@ -126,4 +126,23 @@ func_java() {
   func_schema_setup
   func_systemd_setup
 }
-  }
+
+func_python() {
+  func_print_head "Install python 3.6"
+  yum install python36 gcc python3-devel -y &>>$log_file
+  func_stat_check $?
+
+  func_app_prereq
+
+
+  func_print_head "Download  Python Dependencies"
+  pip3.6 install -r requirements.txt &>>$log_file
+  func_stat_check $?
+
+  func_print_head "Update passwords in system service file"
+  sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|"  ${script_path}/payment.service
+  func_stat_check $?
+
+  func_systemd_setup
+
+}

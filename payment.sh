@@ -8,6 +8,9 @@ if [ -z "$rabbitmq_appuser_password"]; then
    exit
 fi
 
+component=payment
+func_python
+
 echo -e "\e[36m>>>>>>>>>Install python 3.6<<<<<<<<<\e[0m"
 yum install python36 gcc python3-devel -y
 
