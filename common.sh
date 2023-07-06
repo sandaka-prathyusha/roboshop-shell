@@ -6,6 +6,19 @@
   echo -e "\e[33m>>>>>>>>> $1 <<<<<<<<<\e[0m"
  }
 
+ schema_setup(){
+   if ["$schema_setup" == "mongo"]; then
+   print_head "Copy MongoDB repos"
+   cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo
+
+   print_head "Install Mongo Client"
+   yum install mongodb-org-shell -y
+
+   print_head "Load schema"
+   mongo --host mongodb-dev.nandu18.online</app/schema/${component}.js
+   fi
+ }
+
 
  func_nodejs() {
 
@@ -41,4 +54,5 @@
  systemctl daemon-reload
  systemctl enable ${component}
  systemctl restart ${component}
+ schema_setup
  }
