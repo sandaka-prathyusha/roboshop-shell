@@ -111,13 +111,12 @@ func_java() {
   func_print_head "Install Maven"
   yum install maven -y &>>$log_file
   func_stat_check $?
-  func_stat_check $?
+
 
   func_app_prereq
 
   func_print_head "Downloading Maven Dependencies"
   mvn clean package &>>$log_file
-
   func_stat_check $?
 
   func_print_head  "Move the file"
