@@ -11,6 +11,7 @@
          echo -e "\e[32mSUCCESS\e[0m"
        else
          echo -e "\e[31mFAILURE\e[0m"
+         echo "Refer the log file /tmp/roboshop.log for more info"
          exit 1
        fi
     }
@@ -45,7 +46,7 @@
  func_app_prereq() {
 
      func_print_head  "Adding Application User"
-     useradd ${app_user}
+     useradd ${app_user} >/tmp/roboshop.log
      func_stat_check $?
 
      func_print_head  "Create Application Directory"
@@ -100,7 +101,7 @@ func_systemd_setup() {
 func_java() {
 
   func_print_head "Install Maven"
-  yum install maven -y
+  yum install maven -y >/tmp/roboshop.log
   func_stat_check $?
   func_stat_check $?
 
