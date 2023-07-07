@@ -21,6 +21,7 @@
     }
 
  func_schema_setup() {
+   func_print_head "LOAD SCHEMA"
    if [ "${schema_setup}" == "mongo" ] ; then
      func_print_head "INSTALL MONGODB REPO"
      cp ${script_path}/mongo.repo  /etc/yum.repos.d/mongo.repo &>>$log_file
@@ -135,8 +136,9 @@ func_python() {
   pip3.6 install -r requirements.txt &>>$log_file
   func_stat_check $?
 
+
   func_print_head "Update passwords in system service file"
-  sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|"  ${script_path}/${component}.service
+   sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|"  ${script_path}/${component}.service
   func_stat_check $?
 
   func_schema_setup
