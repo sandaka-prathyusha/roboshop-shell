@@ -139,6 +139,7 @@ func_python() {
   sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|"  ${script_path}/${component}.service
   func_stat_check $?
 
+  func_schema_setup
   func_systemd_setup
 
 }
