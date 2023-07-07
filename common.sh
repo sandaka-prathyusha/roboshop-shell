@@ -39,7 +39,7 @@
      func_stat_check $?
 
      func_print_head  "LOAD SCHEMA"
-     mysql -h  mysql-dev.nandu18.online -uroot -p${mysql_root_passwrd} <  /app/schema/shipping.sql
+     mysql -h  mysql-dev.nandu18.online -uroot -p ${mysql_root_passwrd} <  /app/schema/shipping.sql
      func_stat_check $?
    fi
    }
