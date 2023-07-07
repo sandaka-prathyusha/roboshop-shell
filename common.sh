@@ -21,7 +21,7 @@
     }
 
  func_schema_setup() {
-   if [ "$schema_setup" == "mongo"]; then
+   if [ "${schema_setup}" == "mongo"]; then
      func_print_head "INSTALL MONGODB REPO"
      cp ${script_path}/mongo.repo  /etc/yum.repos.d/mongo.repo &>>$log_file
      func_stat_check $?
@@ -33,7 +33,7 @@
      mongo --host mongodb-dev.nandu18.online  </app/schema/${component}.js
      func_stat_check $?
    fi
-   if [ "$schema_setup" == "mysql"]; then
+   if [ "${schema_setup}" == "mysql"]; then
 
      func_print_head  "INSTALL MYSQL Client"
      yum install mysql -y &>>$log_file
@@ -63,7 +63,7 @@
      func_stat_check $?
 
      func_print_head "Downloading Application Content"
-     curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
+     curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>$log_file
      func_stat_check $?
      cd /app
 
