@@ -34,7 +34,7 @@
      func_stat_check $?
    fi
    if [ "${schema_setup}" == "mysql" ] ; then
-     func_print_head "INSTALL MYSQL CLIENT"
+     func_print_head "INSTALL MYSQL "
      yum install mysql -y &>>$log_file
      func_stat_check $?
 
