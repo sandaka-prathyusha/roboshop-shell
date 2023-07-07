@@ -35,6 +35,10 @@
    fi
    if [ "${schema_setup}" == "mysql" ] ; then
      func_print_head  "INSTALL MYSQL Client"
+     cp ${script_path}/mysql.repo  /etc/yum.repos.d/mysql.repo  &>>$log_file
+     func_stat_check $?
+
+     func_print_head "INSTALL MYSQL CLIENT"
      yum install mysql -y &>>$log_file
      func_stat_check $?
 
@@ -42,8 +46,7 @@
      mysql -h  mysql-dev.nandu18.online -uroot -p${mysql_root_passwrd} <  /app/schema/shipping.sql
      func_stat_check $?
    fi
-
- }
+   }
 
 
  func_app_prereq() {
@@ -118,6 +121,7 @@ func_java() {
 
   func_print_head  "Move the file"
   mv target/${component}-1.0.jar   ${component}.jar &>>$log_file
+  func_stat_check $?
 
   func_schema_setup
   func_systemd_setup
