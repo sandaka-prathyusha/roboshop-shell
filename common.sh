@@ -40,7 +40,7 @@
      func_stat_check $?
 
      func_print_head  "LOADING SCHEMA"
-     mysql -h  mysql-dev.nandu18.online -uroot -p${mysql_root_passwrd} <  /app/schema/${component}.sql &>>$log_file
+     mysql -h  mysql-dev.nandu18.online -uroot -p${mysql_root_passward} <  /app/schema/${component}.sql &>>$log_file
      func_stat_check $?
    fi
    }
