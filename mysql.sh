@@ -3,23 +3,29 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 mysql_root_password=$1
 
-if [ -z "$mysql_root_password"]; then
+if [ -z "$mysql_root_password" ]  ; then
    echo Input MYSQL Root  Password Missing
    exit
 fi
 
-echo -e "\e[36m>>>>>>>>>Disabling Default mysql<<<<<<<<<\e[0m"
-dnf module disable mysql -y
 
-echo -e "\e[36m>>>>>>>>>COPYING MYSQL Repos<<<<<<<<<\e[0m"
-cp mysql.repo  /etc/yum.repos.d/mysql.repo
+func_print_head  "Disabling Default mysql"
+dnf module disable mysql -y &>>$log_file
+func_stat_check $?
 
-echo -e "\e[36m>>>>>>>>>Install mysql<<<<<<<<<\e[0m"
-yum install mysql-community-server -y
+func_print_head  "COPYING MYSQL Repos"
+cp mysql.repo  /etc/yum.repos.d/mysql.repo &>>$log_file
+func_stat_check $?
 
-echo -e "\e[36m>>>>>>>>>Starting mysql<<<<<<<<<\e[0m"
-systemctl enable mysqld
-systemctl restart mysqld
+func_print_head  "Install mysql"
+yum install mysql-community-server -y &>>$log_file
+func_stat_check $?
 
-echo -e "\e[36m>>>>>>>>>Changing root password<<<<<<<<<\e[0m"
-mysql_secure_installation --set-root-pass $mysql_root_password
+func_print_head  "Starting mysql"
+systemctl enable mysqld &>>$log_file
+systemctl restart mysqld &>>$log_file
+func_stat_check $?
+
+func_print_head  "Changing root password"
+mysql_secure_installation --set-root-pass $mysql_root_password &>>$log_file
+func_stat_check $?
