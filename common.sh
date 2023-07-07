@@ -30,7 +30,7 @@
      yum install mongodb-org-shell -y &>>$log_file
      func_stat_check $?
      func_print_head "LOAD SCHEMA"
-     mongo --host mongodb-dev.nandu18.online  </app/schema/${component}.js
+     mongo --host mongodb-dev.nandu18.online  </app/schema/${component}.js &>>$log_file
      func_stat_check $?
    fi
    if [ "${schema_setup}" == "mysql" ] ; then
