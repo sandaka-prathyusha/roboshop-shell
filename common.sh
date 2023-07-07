@@ -34,10 +34,6 @@
      func_stat_check $?
    fi
    if [ "${schema_setup}" == "mysql" ] ; then
-     func_print_head  "INSTALL MYSQL Client"
-     cp ${script_path}/mysql.repo  /etc/yum.repos.d/mysql.repo  &>>$log_file
-     func_stat_check $?
-
      func_print_head "INSTALL MYSQL CLIENT"
      yum install mysql -y &>>$log_file
      func_stat_check $?
