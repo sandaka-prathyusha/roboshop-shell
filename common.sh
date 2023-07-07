@@ -39,8 +39,8 @@
      yum install mysql -y &>>$log_file
      func_stat_check $?
 
-     func_print_head  "LOAD SCHEMA"
-     mysql -h  mysql-dev.nandu18.online -uroot -p${mysql_root_passwrd} <  /app/schema/shipping.sql &>>$log_file
+     func_print_head  "LOADING SCHEMA"
+     mysql -h  mysql-dev.nandu18.online -uroot -p${mysql_root_passwrd} <  /app/schema/${component}.sql &>>$log_file
      func_stat_check $?
    fi
    }
@@ -121,6 +121,8 @@ func_java() {
   func_stat_check $?
 
   func_schema_setup
+  func_stat_check $?
+
   func_systemd_setup
 }
 
