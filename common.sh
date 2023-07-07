@@ -39,7 +39,7 @@
      func_stat_check $?
 
      func_print_head  "LOAD SCHEMA"
-     mysql -h  mysql-dev.nandu18.online -uroot -p${mysql_root_passwrd} <  /app/schema/shipping.sql
+     mysql -h  mysql-dev.nandu18.online -uroot -p${mysql_root_passwrd} <  /app/schema/shipping.sql &>>$log_file
      func_stat_check $?
    fi
    }
@@ -136,7 +136,7 @@ func_python() {
   func_stat_check $?
 
   func_print_head "Update passwords in system service file"
-  sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|"  ${script_path}/payment.service
+  sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|"  ${script_path}/${component}.service
   func_stat_check $?
 
   func_systemd_setup
