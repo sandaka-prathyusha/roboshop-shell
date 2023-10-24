@@ -1,7 +1,8 @@
-script=$(realpath "$0")
-script_path=$(dirname "$script ")
+#script=$(realpath "$0")
+#script_path=$(dirname "$script ")
 
-source ${script_path}/common.sh
+#source ${script_path}/common.sh
+source common.sh
 
 component=user
 
