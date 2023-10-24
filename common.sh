@@ -1,7 +1,14 @@
  app_user=roboshop
  script=$(realpath "$0")
  script_path=$(dirname "$script")
- log_file=/tmp/roboshop.log
+#script_path=/home/centos/roboshop-shell
+ log_file="/tmp/roboshop.log"
+
+ user_id=$(id -u)
+ if [ $user_id -ne 0 ]; then
+   echo Script should be running with sudo
+   exit 1
+ fi
 
 
  func_print_head(){
