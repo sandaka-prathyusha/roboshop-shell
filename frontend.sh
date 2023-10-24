@@ -1,6 +1,6 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
-source common.sh
+source ${script_path}/common.sh
 
 
 func_print_head "Install Nginx"
